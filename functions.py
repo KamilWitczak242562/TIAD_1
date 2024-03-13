@@ -2,65 +2,65 @@ import numpy as np
 
 
 def sphere():
-    x = np.random.uniform(-100, 100, 400)
+    x = [np.random.uniform(-100, 100, 29) for _ in range(40)]
     y = []
-    for i in range(400):
+    for i in x:
         z = 0
-        for j in range(30):
-            z = z + (x[i] ** 2)
+        for j in i:
+            z = z + (j ** 2)
         y.append(z)
-    return y
+    return y, x
 
 
 def rastrigin():
-    x = np.random.uniform(-5.12, 5.12, 50)
+    x = [np.random.uniform(-5.12, 5.12, 29) for _ in range(40)]
     y = []
-    for i in range(50):
+    for i in x:
         z = 0
-        for j in range(30):
-            z = z + (x[i] ** 2 - 10 * np.cos(2 * np.pi * x[i]) + 10)
+        for j in i:
+            z = z + (j ** 2 - 10 * np.cos(2 * np.pi * j) + 10)
         y.append(z)
-    return y
+    return y, x
 
 
 def alpine():
-    x = np.random.uniform(-10, 10, 100)
+    x = [np.random.uniform(-10, 10, 29) for _ in range(40)]
     y = []
-    for i in range(100):
+    for i in x:
         z = 0
-        for j in range(30):
-            z = z + np.abs((x[i] * np.sin(x[i]) + 0.1 * x[i]))
+        for j in i:
+            z = z + np.abs((j * np.sin(j) + 0.1 * j))
         y.append(z)
-    return y
+    return y, x
 
 def schwefel():
-    x = np.random.uniform(-100, 100, 400)
+    x = [np.random.uniform(-100, 100, 29) for _ in range(40)]
     y = []
-    for i in range(400):
+    for i in x:
         z = 0
-        for j in range(30):
-            z = z + np.abs(x[i] * np.sin(np.sqrt(np.abs(x[i]))))
+        for j in i:
+            z = z + np.abs(j * np.sin(np.sqrt(np.abs(j))))
         y.append(z)
-    return y
+    return y, x
 
 def bohachevsky():
-    x = np.random.uniform(-10, 10, 100)
+    x = [np.random.uniform(-10, 10, 29) for _ in range(40)]
     y = []
     # ??????????
-    for i in range(99):
+    for i in x:
         z = 0
-        for j in range(30):
-            z = z + (x[i] ** 2 + 2 * x[i+1] ** 2 - 0.3 * np.cos(3 * np.pi * x[i]))
+        for j in i:
+            z = z + (j ** 2 + 2 * x[i+1] ** 2 - 0.3 * np.cos(3 * np.pi * j))
         y.append(z)
-    return y
+    return y, x
 
 def elliptic():
-    x = np.random.uniform(-100, 100, 400)
+    x = [np.random.uniform(-100, 100, 29) for _ in range(40)]
     y = []
-    for i in range(400):
+    for i in x:
         z = 0
-        for j in range(30):
-            z = z + ((10**6)**((i - 1)/(30-1))*x[i]**2)
+        for index, j in enumerate(i):
+            z = z + ((10**6)**((index - 1)/(30-1))*j**2)
         y.append(z)
-    return y
+    return y, x
 
