@@ -46,11 +46,11 @@ def schwefel():
 def bohachevsky():
     x = [np.random.uniform(-10, 10, 29) for _ in range(40)]
     y = []
-    # ??????????
     for i in x:
         z = 0
-        for j in i:
-            z = z + (j ** 2 + 2 * x[i+1] ** 2 - 0.3 * np.cos(3 * np.pi * j))
+        for index, j in enumerate(i):
+            next_j = i[(index + 1) % len(i)]
+            z = z + (j ** 2 + 2 * next_j ** 2 - 0.3 * np.cos(3 * np.pi * j))
         y.append(z)
     return y, x
 
