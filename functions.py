@@ -1,16 +1,14 @@
 import numpy as np
 
 
-def sphere():
-    x = [np.random.uniform(-100, 100, 29) for _ in range(40)]
-    y = []
+def sphere(x):
+    y = 0
     for i in x:
-        z = 0
-        for j in i:
-            z = z + (j ** 2)
-        y.append(z)
-    return y, x
+        y = y + (i ** 2)
+    return y
 
+def x_sphere():
+    return np.random.uniform(-100, 100, 5)
 
 def rastrigin():
     x = [np.random.uniform(-5.12, 5.12, 29) for _ in range(40)]
