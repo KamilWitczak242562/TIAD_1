@@ -5,10 +5,7 @@ size = 30
 
 
 def sphere(x):
-    y = 0
-    for i in x:
-        y = y + (i ** 2)
-    return y
+    return np.sum(np.square(x))
 
 
 def x_sphere():

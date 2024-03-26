@@ -2,7 +2,7 @@ import math
 import random
 import numpy as np
 
-g_cognitive_const = 1.5  # od 0 do 2 malec
+g_cognitive_const = 1.8  # od 0 do 2 malec
 g_social_const = 0.4  # nie wiem rosnac
 g_inertia = 0.9  # od 0 do 1 malec
 
@@ -95,19 +95,20 @@ iter_since_last_improvement = 0
 def run_pso_simulation(x, iterations, amount, function):
     swarm = Swarm(x, amount, function)
     previous_best_adaptation = math.inf
-
+    iter = 0
     global g_cognitive_const
     global g_social_const
     global g_inertia
     global iter_since_last_improvement
 
-    change_cog = (g_cognitive_const - 0.4) / iterations
-    change_soc = (1.5 - g_social_const) / iterations
-    change_inertia = (g_inertia - 0.5) / iterations
+    # change_cog = (g_cognitive_const - 0.4) / iterations
+    # change_soc = (1.5 - g_social_const) / iterations
+    # change_inertia = (g_inertia - 0.5) / iterations
 
     current_best_particle = best_in_swarm(swarm)
 
     for _ in range(iterations):
+        iter += 1
         current_best_particle = best_in_swarm(swarm)
 
         if current_best_particle.adaptation < previous_best_adaptation:
@@ -123,8 +124,8 @@ def run_pso_simulation(x, iterations, amount, function):
         for particle in swarm:
             update_particle(current_best_particle.x, current_best_particle.y, particle)
 
-        g_cognitive_const += change_cog
-        g_inertia += change_inertia
-        g_social_const += change_soc
+        g_cognitive_const = 1.8 - 1.5 * (iter / iterations)
+        g_inertia = 0.9 - 0.5 * (iter / iterations)
+        g_social_const = 0.4 + 1.5 * (iter / iterations)
 
     return current_best_particle
